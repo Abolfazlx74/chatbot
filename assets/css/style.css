@@ -2,6 +2,59 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.dark-mode .chatbot-header {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+.dark-mode .chat-part {
+    border-color: #444;
+}
+
+.dark-mode .user-message {
+    background-color: #4a4a4f;
+}
+
+.dark-mode .bot-message {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+.dark-mode #user-input {
+    background-color: #2d2d2d;
+    color: #ffffff;
+    border-color: #444;
+}
+
+.dark-mode .questions-part div {
+    background: linear-gradient(#2d2d2d, #222);
+    border-color: #444;
+    color: #ffffff;
+}
+
+#dark-mode-button {
+    width: 130px;
+    height: 50%;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    display: flex;
+    position: absolute;
+    right: 130px;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#dark-mode-button:hover {
+    opacity: .8;
 }
 
 .chatbot-container{
@@ -71,7 +124,8 @@ body {
     pointer-events: none;
 }
 #chatbot-fixed-logo{
-    width: 34rem;
+    width: 75vw;
+    height: 65vh;
     filter: blur(3px);
 }
 /* chatpart */
@@ -120,7 +174,6 @@ body {
     width: 90%;
 }
 .user-message {
-
     align-self: flex-end;
     background-color: #373b3f;
     color: #fff;
@@ -142,7 +195,6 @@ body {
     z-index: -2;    
     font-size: 22px;
     direction: ltr;
-    background-color: #fff;
 }
 
 .questions-part{

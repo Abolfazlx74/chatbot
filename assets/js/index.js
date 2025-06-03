@@ -1,13 +1,25 @@
 const chatMessages = document.getElementById('chat-messages');
 const userInput = document.getElementById('user-input');
 const chatPart = document.querySelector(".chat-part");
+const darkModeButton = document.getElementById('dark-mode-button');
+
+const isDarkMode = localStorage.getItem('darkMode') === 'true';
+if (isDarkMode) {
+    document.body.classList.add('dark-mode');
+}
+
+darkModeButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+});
 
 function addUserMessage(message) {
     const container = document.createElement('div');
     container.classList.add("user-message-container");
 
     const profile = document.createElement('img');
-    profile.src = "chatbot-pictures/user.svg";
+    profile.src = "assets/images/user.svg";
     profile.classList.add("user-profile");
 
     const messageElement = document.createElement('div');
@@ -26,7 +38,7 @@ function addBotMessage(message) {
     container.classList.add("bot-message-container");
 
     const profile = document.createElement('img');
-    profile.src = "chatbot-pictures/bot.svg";
+    profile.src = "assets/images/bot.svg";
     profile.classList.add("bot-profile");
 
     const messageElement = document.createElement('div');
