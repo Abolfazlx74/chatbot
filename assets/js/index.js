@@ -8,10 +8,24 @@ if (isDarkMode) {
     document.body.classList.add('dark-mode');
 }
 
+function setProfileImagesForMode(isDark) {
+    const userProfiles = document.querySelectorAll('.user-profile');
+    const botProfiles = document.querySelectorAll('.bot-profile');
+    userProfiles.forEach(img => {
+        img.src = isDark ? 'assets/images/user-dark.svg' : 'assets/images/user.svg';
+    });
+    botProfiles.forEach(img => {
+        img.src = isDark ? 'assets/images/bot-dark.svg' : 'assets/images/bot.svg';
+    });
+}
+
+setProfileImagesForMode(isDarkMode);
+
 darkModeButton.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     const isDarkMode = document.body.classList.contains('dark-mode');
     localStorage.setItem('darkMode', isDarkMode);
+    setProfileImagesForMode(isDarkMode);
 });
 
 function addUserMessage(message) {
@@ -19,8 +33,8 @@ function addUserMessage(message) {
     container.classList.add("user-message-container");
 
     const profile = document.createElement('img');
-    profile.src = "assets/images/user.svg";
     profile.classList.add("user-profile");
+    profile.src = document.body.classList.contains('dark-mode') ? "assets/images/user-dark.svg" : "assets/images/user.svg";
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('user-message');
@@ -38,8 +52,8 @@ function addBotMessage(message) {
     container.classList.add("bot-message-container");
 
     const profile = document.createElement('img');
-    profile.src = "assets/images/bot.svg";
     profile.classList.add("bot-profile");
+    profile.src = document.body.classList.contains('dark-mode') ? "assets/images/bot-dark.svg" : "assets/images/bot.svg";
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('bot-message');

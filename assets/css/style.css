@@ -92,6 +92,10 @@ body.dark-mode {
     white-space: nowrap;
 }
 
+body.dark-mode #title-description {
+    color: #e0e0e0;
+}
+
 #clear-button{
     width: 112px;
     height: 50%;
