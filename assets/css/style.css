@@ -145,7 +145,7 @@ body.dark-mode #title-description {
     border-radius: 5px;
     direction: ltr;
     overflow-y: scroll;
-    font-size: 1.9rem;    
+    font-size: 1.4rem;    
 }
 .chat-part::-webkit-scrollbar {
     display: none;
@@ -158,16 +158,12 @@ body.dark-mode #title-description {
 }
 .user-message-container, .bot-message-container {
     display: flex;
-    position: relative;
     margin-top: .5%;
+    align-items: center;
 }
 .user-profile, .bot-profile{
     width: 50px;
-    position: absolute;
-    top: 4px;
-}
-.bot-profile{
-    top: 12px;
+    margin-right: 10px;
 }
 
 .user-message, .bot-message {
@@ -239,8 +235,5 @@ body.dark-mode #title-description {
     }
     .user-profile , .bot-profile{
         width: 43px;
-    }
-    .bot-profile{
-        top: 8px;
     }
 }
