@@ -40,6 +40,10 @@ body.dark-mode {
     color: #ffffff;
 }
 
+.dark-mode svg *{
+    fill: #ffffffcf;
+}
+
 #dark-mode-button {
     width: 130px;
     height: 50%;
@@ -115,12 +119,12 @@ body.dark-mode #title-description {
 
 .chatbot-fixed-logo-container{
     width: 100vw;
-    height: 80vh;
+    height: 75vh;
     display: flex;
     position: fixed;
     justify-content: center;
     align-items: center;
-    opacity: .2;
+    opacity: .15;
     pointer-events: none;
 }
 #chatbot-fixed-logo{
@@ -141,7 +145,7 @@ body.dark-mode #title-description {
     border-radius: 5px;
     direction: ltr;
     overflow-y: scroll;
-    font-size: 1.4rem;    
+    font-size: 1.4rem;
 }
 .chat-part::-webkit-scrollbar {
     display: none;
@@ -183,47 +187,44 @@ body.dark-mode #title-description {
 .chatbot-footer-container{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .chatbot-footer{
-    position: fixed ;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 80%;
-    height: 15%;
-    bottom: 0;
+    height: 5%;
+    bottom: 8%;
     z-index: -2;    
     font-size: 22px;
     direction: ltr;
 }
 
-.questions-part{
-    display: flex;
-    overflow-x: scroll;
-}
-.questions-part::-webkit-scrollbar {
-    display: none;
-}
-
-.questions-part div{
-    margin-left: 1%;
-    display: inline-block;
-    white-space: nowrap;
-    text-align: center;
-    cursor: pointer;
-    padding: 5px;
-    color: gray;
-    border: 2px solid rgba(128, 128, 128, 0.523);
-    border-radius: 10px;
-    background: linear-gradient(white,whitesmoke);
-}
-.questions-part div:hover{
-    opacity: .7;
-}
-
 #user-input{
-    margin-top: 1%;
-    width: 100%;
+    width: 90%;
     border-radius: 10px;
-    height: 40%;
+    height: 100%;
     border: solid 2px gray;
+}
+
+.footer-icon-button{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 8px;
+    margin-left: 6px;
+}
+.footer-icon-button:hover, .footer-icon-button:focus {
+    background: rgba(60, 60, 60, 0.08);
+    filter: brightness(0.95);
+}
+
+.footer-icon-button svg{
+    width: 24px;
+    height: 24px;
 }
 
 @media (max-width: 800px){
@@ -232,5 +233,9 @@ body.dark-mode #title-description {
     }
     .user-profile , .bot-profile{
         width: 43px;
+    }
+    .footer-icon-button svg{
+        width: 20px;
+        height: 20px;
     }
 }

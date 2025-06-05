@@ -2,10 +2,12 @@ const chatMessages = document.getElementById('chat-messages');
 const userInput = document.getElementById('user-input');
 const chatPart = document.querySelector(".chat-part");
 const darkModeButton = document.getElementById('dark-mode-button');
+const sendButton = document.getElementById('send-button');
 
 const isDarkMode = localStorage.getItem('darkMode') === 'true';
 if (isDarkMode) {
     document.body.classList.add('dark-mode');
+    document.querySelectorAll(".dark-mode svg")
 }
 
 function setProfileImagesForMode(isDark) {
@@ -62,15 +64,19 @@ function addBotMessage(message) {
     container.appendChild(messageElement);
     chatMessages.appendChild(container);
 
-    typeMessage(messageElement, message, 5);
+    typeMessage(messageElement, message, 20);
 }
 
-function typeMessage(element, text, speed = 5) {
+function typeMessage(element, text, speed = 20) {
+    const words = text.split(' ');
     let i = 0;
+    element.textContent = '';
     const interval = setInterval(() => {
-        element.textContent += text[i];
-        i++;
-        if (i >= text.length) {
+        if (i < words.length) {
+            element.textContent += (i === 0 ? '' : ' ') + words[i];
+            i++;
+            scrollToBottom();
+        } else {
             clearInterval(interval);
             scrollToBottom();
         }
@@ -81,18 +87,28 @@ function scrollToBottom() {
     chatPart.scrollTop = chatPart.scrollHeight;
 }
 
+function sendMessage(message) {
+    addUserMessage(message);
+    userInput.value = '';
+    fetch('http://localhost:3001/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+    })
+    .then(res => res.json())
+    .then(data => addBotMessage(data.reply))
+    .catch(() => addBotMessage("Error communicating with the server!"));
+}
+
+
 userInput.addEventListener('keypress', function(event) {
     const message = event.target.value.trim();
     if (event.key === 'Enter' && message !== "") {
-        addUserMessage(message);
-        userInput.value = '';
-        fetch('http://localhost:3001/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message })
-        })
-        .then(res => res.json())
-        .then(data => addBotMessage(data.reply))
-        .catch(() => addBotMessage("Error communicating with the server!"));
+        sendMessage(message)
     }
+});
+
+sendButton.addEventListener('click', function() {
+    const message = userInput.value.trim();
+    sendMessage(message)
 });
