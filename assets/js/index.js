@@ -62,10 +62,10 @@ function addBotMessage(message) {
     container.appendChild(messageElement);
     chatMessages.appendChild(container);
 
-    typeMessage(messageElement, message, 15);
+    typeMessage(messageElement, message, 5);
 }
 
-function typeMessage(element, text, speed = 15) {
+function typeMessage(element, text, speed = 5) {
     let i = 0;
     const interval = setInterval(() => {
         element.textContent += text[i];
@@ -86,6 +86,13 @@ userInput.addEventListener('keypress', function(event) {
     if (event.key === 'Enter' && message !== "") {
         addUserMessage(message);
         userInput.value = '';
-        setTimeout(() => addBotMessage("سلام! چطور می‌توانم به شما کمک کنم؟"), 500);
+        fetch('http://localhost:3001/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message })
+        })
+        .then(res => res.json())
+        .then(data => addBotMessage(data.reply))
+        .catch(() => addBotMessage("Error communicating with the server!"));
     }
 });

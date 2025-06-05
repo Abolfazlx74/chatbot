@@ -57,10 +57,6 @@ body.dark-mode {
     opacity: .8;
 }
 
-.chatbot-container{
-    font-family: B Koodak;   
-}
-
 .chatbot-header{
     position: fixed;
     display: flex;
@@ -170,8 +166,9 @@ body.dark-mode #title-description {
     padding: 8px 12px;
     margin-bottom: 5px;
     border-radius: 5px;
-    margin-left:60px ;
     width: 90%;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 .user-message {
     align-self: flex-end;
