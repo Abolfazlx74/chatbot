@@ -3,11 +3,11 @@ const userInput = document.getElementById('user-input');
 const chatPart = document.querySelector(".chat-part");
 const darkModeButton = document.getElementById('dark-mode-button');
 const sendButton = document.getElementById('send-button');
+const clearButton = document.getElementById('clear-button');
 
 const isDarkMode = localStorage.getItem('darkMode') === 'true';
 if (isDarkMode) {
     document.body.classList.add('dark-mode');
-    document.querySelectorAll(".dark-mode svg")
 }
 
 function setProfileImagesForMode(isDark) {
@@ -111,4 +111,8 @@ userInput.addEventListener('keypress', function(event) {
 sendButton.addEventListener('click', function() {
     const message = userInput.value.trim();
     sendMessage(message)
+});
+
+clearButton.addEventListener('click', function() {
+    chatMessages.innerHTML = '';
 });
