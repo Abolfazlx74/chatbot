@@ -10,19 +10,23 @@
 <body>
   <div class="chatbot-container">
     <header class="chatbot-header">
-      <img src="assets/images/chatbot_ai_machine-learning.svg" id="chatbot-logo" alt=""/>
-      <div class="chatbot-title">
-        ChatBot
-        <span id="title-description">Talk to AI chatbot about anything</span>
+      <div class="header-left">
+        <img src="assets/images/chatbot_ai_machine-learning.svg" id="chatbot-logo" alt=""/>
+        <div class="chatbot-title">
+          ChatBot
+          <span id="title-description">Talk to AI chatbot about anything</span>
+        </div>
       </div>
-      <button id="clear-button">
-        <img alt="label" width="24" height="24" decoding="async" data-nimg="1" style="padding-left: 10%;padding-right: 5px;" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgaWQ9ImljX2NsZWFuZXIiPgo8cGF0aCBpZD0iVW5pb24iIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTMuMDAwMyAyLjgwMDA1QzEzLjAwMDMgMi4yNDc3NiAxMi41NTI2IDEuODAwMDUgMTIuMDAwMyAxLjgwMDA1QzExLjQ0OCAxLjgwMDA1IDExLjAwMDMgMi4yNDc3NiAxMS4wMDAzIDIuODAwMDVWNS44MDAwNUg2Ljc2NkM1LjU2Mjk2IDUuODAwMDUgNC42NDA5MyA2Ljg1NTQgNC43MDk1NCA4LjA1NjQ4QzQuOTM5NTggMTIuMDgzNSA0LjI1NjAyIDE0Ljg1OTIgMy4wNzY5NSAxOC4wNDQ0QzIuNTg1MzQgMTkuMzcyNCAzLjU0MjYyIDIwLjggNC45NTg3MSAyMC44SDE3LjI5MzlDMTguODMxNiAyMC44IDIwLjEyNTggMTkuNjM3NiAyMC4yODI2IDE4LjEwOEMyMC42NjQ5IDE0LjM3OTQgMjAuODM3IDExLjYxNTQgMjAuMDU1OCA3Ljk4MzM5QzE5Ljc3NTIgNi42Nzg5MSAxOC41ODI2IDUuODAwMDUgMTcuMjQ4MiA1LjgwMDA1SDEzLjAwMDNWMi44MDAwNVpNNi43NjYgNy44MDAwNUgxNy4yNDgyQzE3LjczMSA3LjgwMDA1IDE4LjAzNjYgOC4xMDcgMTguMTAwNSA4LjQwMzkyQzE4LjIwMzggOC44ODQyNCAxOC4yODkxIDkuMzQ3NjEgMTguMzU4NCA5LjgwMDA1SDYuNzUyNzFDNi43NTgxMSA5LjIwNjE0IDYuNzQzMiA4LjU4ODY3IDYuNzA2MjkgNy45NDI0MkM2LjcwMzIzIDcuODg4OTEgNi43MjIzNiA3Ljg0MzczIDYuNzQ3OTYgNy44MTUyNkM2Ljc1NjAyIDcuODA2MyA2Ljc2MjI0IDcuODAxODYgNi43NjUxNCA3LjgwMDA1TDYuNzY2IDcuODAwMDVaTTYuNjUyNyAxMS44SDE4LjU2ODhDMTguNjc4IDEzLjcwMDYgMTguNTMyOCAxNS41NjU5IDE4LjI5MyAxNy45MDRDMTguMjQxNCAxOC40MDggMTcuODExNCAxOC44IDE3LjI5MzkgMTguOEgxNi4wMDAyVjE4QzE2LjAwMDIgMTcuNDQ3NyAxNS41NTI1IDE3IDE1LjAwMDIgMTdDMTQuNDQ4IDE3IDE0LjAwMDIgMTcuNDQ3NyAxNC4wMDAyIDE4VjE4LjhINC45NTk0M0w0Ljk1NzMyIDE4Ljc5NzFDNC45NTEyIDE4Ljc4ODEgNC45NDc4OSAxOC43NzgzIDQuOTQ2OSAxOC43NzA5QzQuOTQ2NDcgMTguNzY3NyA0Ljk0NjQgMTguNzY0NSA0Ljk0NjggMTguNzYwOEM0Ljk0NzE4IDE4Ljc1NzMgNC45NDgzIDE4Ljc1MDIgNC45NTI1NiAxOC43Mzg3QzUuNzk3NCAxNi40NTY0IDYuNDE5MjkgMTQuMzEzMiA2LjY1MjcgMTEuOFoiIGZpbGw9IiMyMTEyMEIiLz4KPC9nPgo8L3N2Zz4K">
-        Clear
-      </button>
-      <button id="dark-mode-button">
-        <img alt="dark mode" width="24" height="24" src="assets/images/dark-mode.svg">
-        Dark Mode
-      </button>
+      <div class="header-buttons-container">
+        <button class="header-icon-button" id="clear-button">
+          <img alt="label" decoding="async" data-nimg="1" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgaWQ9ImljX2NsZWFuZXIiPgo8cGF0aCBpZD0iVW5pb24iIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTMuMDAwMyAyLjgwMDA1QzEzLjAwMDMgMi4yNDc3NiAxMi41NTI2IDEuODAwMDUgMTIuMDAwMyAxLjgwMDA1QzExLjQ0OCAxLjgwMDA1IDExLjAwMDMgMi4yNDc3NiAxMS4wMDAzIDIuODAwMDVWNS44MDAwNUg2Ljc2NkM1LjU2Mjk2IDUuODAwMDUgNC42NDA5MyA2Ljg1NTQgNC43MDk1NCA4LjA1NjQ4QzQuOTM5NTggMTIuMDgzNSA0LjI1NjAyIDE0Ljg1OTIgMy4wNzY5NSAxOC4wNDQ0QzIuNTg1MzQgMTkuMzcyNCAzLjU0MjYyIDIwLjggNC45NTg3MSAyMC44SDE3LjI5MzlDMTguODMxNiAyMC44IDIwLjEyNTggMTkuNjM3NiAyMC4yODI2IDE4LjEwOEMyMC42NjQ5IDE0LjM3OTQgMjAuODM3IDExLjYxNTQgMjAuMDU1OCA3Ljk4MzM5QzE5Ljc3NTIgNi42Nzg5MSAxOC41ODI2IDUuODAwMDUgMTcuMjQ4MiA1LjgwMDA1SDEzLjAwMDNWMi44MDAwNVpNNi43NjYgNy44MDAwNUgxNy4yNDgyQzE3LjczMSA3LjgwMDA1IDE4LjAzNjYgOC4xMDcgMTguMTAwNSA4LjQwMzkyQzE4LjIwMzggOC44ODQyNCAxOC4yODkxIDkuMzQ3NjEgMTguMzU4NCA5LjgwMDA1SDYuNzUyNzFDNi43NTgxMSA5LjIwNjE0IDYuNzQzMiA4LjU4ODY3IDYuNzA2MjkgNy45NDI0MkM2LjcwMzIzIDcuODg4OTEgNi43MjIzNiA3Ljg0MzczIDYuNzQ3OTYgNy44MTUyNkM2Ljc1NjAyIDcuODA2MyA2Ljc2MjI0IDcuODAxODYgNi43NjUxNCA3LjgwMDA1TDYuNzY2IDcuODAwMDVaTTYuNjUyNyAxMS44SDE4LjU2ODhDMTguNjc4IDEzLjcwMDYgMTguNTMyOCAxNS41NjU5IDE4LjI5MyAxNy45MDRDMTguMjQxNCAxOC40MDggMTcuODExNCAxOC44IDE3LjI5MzkgMTguOEgxNi4wMDAyVjE4QzE2LjAwMDIgMTcuNDQ3NyAxNS41NTI1IDE3IDE1LjAwMDIgMTdDMTQuNDQ4IDE3IDE0LjAwMDIgMTcuNDQ3NyAxNC4wMDAyIDE4VjE4LjhINC45NTk0M0w0Ljk1NzMyIDE4Ljc5NzFDNC45NTEyIDE4Ljc4ODEgNC45NDc4OSAxOC43NzgzIDQuOTQ2OSAxOC43NzA5QzQuOTQ2NDcgMTguNzY3NyA0Ljk0NjQgMTguNzY0NSA0Ljk0NjggMTguNzYwOEM0Ljk0NzE4IDE4Ljc1NzMgNC45NDgzIDE4Ljc1MDIgNC45NTI1NiAxOC43Mzg3QzUuNzk3NCAxNi40NTY0IDYuNDE5MjkgMTQuMzEzMiA2LjY1MjcgMTEuOFoiIGZpbGw9IiMyMTEyMEIiLz4KPC9nPgo8L3N2Zz4K">
+          <span>Clear</span>
+        </button>
+        <button class="header-icon-button" id="dark-mode-button">
+          <img alt="dark mode" src="assets/images/dark-mode.svg">
+          <span>Dark mode</span>
+        </button>
+      </div>
     </header>
 
     <div class="chatbot-fixed-logo-container">

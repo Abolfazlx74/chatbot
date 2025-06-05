@@ -16,7 +16,7 @@ body.dark-mode {
 }
 
 .dark-mode .chat-part {
-    border-color: #444;
+    border-color: #a0a0a0;
 }
 
 .dark-mode .user-message {
@@ -44,35 +44,23 @@ body.dark-mode {
     fill: #ffffffcf;
 }
 
-#dark-mode-button {
-    width: 130px;
-    height: 50%;
-    font-size: 1.1rem;
-    border-radius: 30px;
-    display: flex;
-    position: absolute;
-    right: 130px;
-    align-items: center;
-    cursor: pointer;
-    margin-right: 10px;
-}
-
-#dark-mode-button:hover {
-    opacity: .8;
-}
-
 .chatbot-header{
     position: fixed;
     display: flex;
-    position: relative;
     width: 100%;
     height: 3.8rem;
     background-color: #fff;
     align-items: center;
+    justify-content: space-between;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
 }
 
 #chatbot-logo{
-    margin-left: 1%;
+    margin-left: 3%;
     width: 2.2rem;
     animation: 10s infinite rotate;
 }
@@ -80,14 +68,14 @@ body.dark-mode {
 .chatbot-title{
     display: flex;
     flex-direction: column;
-    font-size: 1.4rem;
+    font-size: calc(1.6vw / 2 + 10px);
     width: 30%;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
-    margin-left: 1%;
+    margin-left: 2%;
 }
 
 #title-description{
-    font-size: 1rem;
+    font-size: calc(1vw / 2 + 8px);
     color: rgba(50, 49, 49, 0.645);
     white-space: nowrap;
 }
@@ -96,19 +84,42 @@ body.dark-mode #title-description {
     color: #e0e0e0;
 }
 
-#clear-button{
-    width: 112px;
-    height: 50%;
-    font-size: 1.1rem;
-    border-radius: 30px;
+.header-buttons-container {
     display: flex;
-    position: absolute;
-    right: 10px;
+    gap: 12px;
     align-items: center;
-    cursor: pointer;
+    margin-right: 24px;
 }
-#clear-button:hover{
-    opacity: .8;
+
+.header-icon-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1.5px solid rgba(33, 31, 31, 0.535);
+    border-radius: 30px;
+    font-size: 1.1rem;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.header-icon-button img{
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+.header-icon-button span {
+    display: inline-block;
+    vertical-align: middle;
+}
+.header-icon-button:hover, .header-icon-button:focus {
+    background: rgba(60, 60, 60, 0.08);
+    filter: brightness(0.95);
+}
+
+#dark-mode-button,
+#clear-button {
+    right: unset;
 }
 
 @keyframes rotate {
@@ -139,13 +150,13 @@ body.dark-mode #title-description {
     left: 10%;
     top: 10%;
     z-index: -2;
-    height: 73%;
+    height: 77%;
     overflow: hidden;
     border: 1px solid #ccc;
     border-radius: 5px;
     direction: ltr;
     overflow-y: scroll;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
 }
 .chat-part::-webkit-scrollbar {
     display: none;
@@ -162,7 +173,7 @@ body.dark-mode #title-description {
     align-items: center;
 }
 .user-profile, .bot-profile{
-    width: 50px;
+    width: calc(3vw / 3 + 25px);
     margin-right: 10px;
 }
 
@@ -196,7 +207,7 @@ body.dark-mode #title-description {
     align-items: center;
     width: 80%;
     height: 5%;
-    bottom: 8%;
+    bottom: 5%;
     z-index: -2;    
     font-size: 22px;
     direction: ltr;
@@ -227,15 +238,28 @@ body.dark-mode #title-description {
     height: 24px;
 }
 
-@media (max-width: 800px){
-    .chat-part{
-        font-size: 1.3rem;
+@media (max-width: 800px) {
+    .chatbot-title{
+        font-size: 1rem;
     }
-    .user-profile , .bot-profile{
-        width: 43px;
+    #title-description{
+        font-size: 0.8rem;
+    }
+    .chat-part{
+        font-size: 1.2rem;
+        left: 5%;
+        width: 90%;
+    }
+    .chatbot-footer{
+        width: 90%;
     }
     .footer-icon-button svg{
         width: 20px;
         height: 20px;
+    }
+}
+@media (max-width: 600px) {
+    .chat-part{
+        font-size: 1rem;
     }
 }
