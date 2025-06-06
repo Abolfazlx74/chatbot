@@ -4,6 +4,8 @@ const chatPart = document.querySelector(".chat-part");
 const darkModeButton = document.getElementById('dark-mode-button');
 const sendButton = document.getElementById('send-button');
 const clearButton = document.getElementById('clear-button');
+const kebabMenuButton = document.getElementById('kebab-menu-button');
+const kebabMenuDropdown = document.getElementById('kebab-menu-dropdown');
 
 const isDarkMode = localStorage.getItem('darkMode') === 'true';
 if (isDarkMode) {
@@ -115,4 +117,31 @@ sendButton.addEventListener('click', function() {
 
 clearButton.addEventListener('click', function() {
     chatMessages.innerHTML = '';
+});
+
+kebabMenuButton.addEventListener('click', function(event) {
+    event.stopPropagation();
+    if (kebabMenuDropdown.style.display === 'none' || kebabMenuDropdown.style.display === '') {
+        kebabMenuDropdown.style.display = 'flex';
+    } else {
+        kebabMenuDropdown.style.display = 'none';
+    }
+});
+
+document.addEventListener('click', function(event) {
+    if (kebabMenuDropdown.style.display === 'flex' && !kebabMenuDropdown.contains(event.target) && event.target !== kebabMenuButton) {
+        kebabMenuDropdown.style.display = 'none';
+    }
+});
+
+document.getElementById('menu-settings').addEventListener('click', function() {
+    kebabMenuDropdown.style.display = 'none';
+});
+
+document.getElementById('menu-attach').addEventListener('click', function() {
+    kebabMenuDropdown.style.display = 'none';
+});
+
+document.getElementById('menu-new-chat').addEventListener('click', function() {
+    kebabMenuDropdown.style.display = 'none';
 });

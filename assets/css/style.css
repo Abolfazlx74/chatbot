@@ -44,12 +44,32 @@ body.dark-mode {
     fill: #ffffffcf;
 }
 
+.dark-mode .kebab-menu-item:nth-child(1) svg *,
+.dark-mode .kebab-menu-item:nth-child(2) svg * {
+  fill: none;
+  stroke: #ffffffcf;
+}
+
+
 .dark-mode .header-icon-button {
     color: #ffffffcf;
+    border-color: rgba(220, 220, 220, 0.605);
 }
 
 .dark-mode #chatbot-fixed-logo{
     opacity: 10%;
+}
+
+body.dark-mode .kebab-menu-dropdown {
+    background: #232323;
+    border-color: #444;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.32);
+}
+body.dark-mode .kebab-menu-item {
+    color: #eee;
+}
+body.dark-mode .kebab-menu-item:hover {
+    background: #333;
 }
 
 .chatbot-header{
@@ -105,7 +125,7 @@ body.dark-mode #title-description {
     background: transparent;
     border: 1.5px solid rgba(33, 31, 31, 0.535);
     border-radius: 30px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: 4px 8px;
     cursor: pointer;
     transition: background 0.2s;
@@ -260,9 +280,6 @@ body.dark-mode #title-description {
     .chat-part{
         font-size: 1rem;
     }
-    .header-icon-button{
-        border-color: rgba(220, 220, 220, 0.605);
-    }
     .header-icon-button img{
         margin-right: 0px;
     }
@@ -271,3 +288,33 @@ body.dark-mode #title-description {
     }
 }
 
+.kebab-menu-dropdown {
+  position: absolute;
+  bottom: 40px;
+  right: -3px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  min-width: 150px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0;
+}
+.kebab-menu-item {
+  padding: 10px 18px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #222;
+  transition: background 0.15s;
+}
+.kebab-menu-item:hover {
+  background: #f0f0f0;
+}
+.kebab-menu-item svg{
+    vertical-align: middle;
+    margin-right: 12px;
+    width: 22px;
+    height: 22px;
+}
