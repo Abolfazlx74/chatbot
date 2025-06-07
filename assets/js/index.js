@@ -66,10 +66,10 @@ function addBotMessage(message) {
     container.appendChild(messageElement);
     chatMessages.appendChild(container);
 
-    typeMessage(messageElement, message, 20);
+    typeMessage(messageElement, message, 5);
 }
 
-function typeMessage(element, text, speed = 20) {
+function typeMessage(element, text, speed = 5) {
     const words = text.split(' ');
     let i = 0;
     element.textContent = '';
@@ -89,30 +89,83 @@ function scrollToBottom() {
     chatPart.scrollTop = chatPart.scrollHeight;
 }
 
+let isWaitingForResponse = false;
+
+function showTypingIndicator() {
+    const container = document.createElement('div');
+    container.classList.add("bot-message-container");
+    container.id = "typing-indicator-container";
+
+    const profile = document.createElement('img');
+    profile.classList.add("bot-profile");
+    profile.src = document.body.classList.contains('dark-mode') ? "assets/images/bot-dark.svg" : "assets/images/bot.svg";
+
+    const typing = document.createElement('div');
+    typing.classList.add('typing-indicator');
+    typing.innerHTML = '<span class="typing-dot">.</span><span class="typing-dot">.</span><span class="typing-dot">.</span>';
+
+    container.appendChild(profile);
+    container.appendChild(typing);
+    chatMessages.appendChild(container);
+
+    scrollToBottom();
+}
+
+function removeTypingIndicator() {
+    const indicator = document.getElementById('typing-indicator-container');
+    if (indicator) {
+        indicator.remove();
+    }
+}
+
+function setInputEnabled(enabled) {
+    userInput.disabled = !enabled;
+    sendButton.disabled = !enabled;
+    if (enabled) {
+        userInput.focus();
+    }
+}
+
 function sendMessage(message) {
+    if (isWaitingForResponse) return;
     addUserMessage(message);
     userInput.value = '';
+    setInputEnabled(false);
+    isWaitingForResponse = true;
+    showTypingIndicator();
+
     fetch('http://localhost:3001/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message })
     })
     .then(res => res.json())
-    .then(data => addBotMessage(data.reply))
-    .catch(() => addBotMessage("Error communicating with the server!"));
+    .then(data => {
+        removeTypingIndicator();
+        addBotMessage(data.reply);
+    })
+    .catch(() => {
+        removeTypingIndicator();
+        addBotMessage("Error communicating with the server!");
+    })
+    .finally(() => {
+        setInputEnabled(true);
+        isWaitingForResponse = false;
+    });
 }
-
 
 userInput.addEventListener('keypress', function(event) {
     const message = event.target.value.trim();
-    if (event.key === 'Enter' && message !== "") {
+    if (event.key === 'Enter' && message !== "" && !isWaitingForResponse) {
         sendMessage(message)
     }
 });
 
 sendButton.addEventListener('click', function() {
     const message = userInput.value.trim();
-    sendMessage(message)
+    if (message !== "" && !isWaitingForResponse) {
+        sendMessage(message)
+    }
 });
 
 clearButton.addEventListener('click', function() {
