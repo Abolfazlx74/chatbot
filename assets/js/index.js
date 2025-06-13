@@ -1,11 +1,12 @@
 const chatMessages = document.getElementById('chat-messages');
 const userInput = document.getElementById('user-input');
-const chatPart = document.querySelector(".chat-part");
+const chatPart = document.querySelector('.chat-part');
 const darkModeButton = document.getElementById('dark-mode-button');
 const sendButton = document.getElementById('send-button');
 const clearButton = document.getElementById('clear-button');
 const kebabMenuButton = document.getElementById('kebab-menu-button');
 const kebabMenuDropdown = document.getElementById('kebab-menu-dropdown');
+const settingsContainer = document.getElementById('settings-container');
 
 const isDarkMode = localStorage.getItem('darkMode') === 'true';
 if (isDarkMode) {
@@ -189,6 +190,11 @@ document.addEventListener('click', function(event) {
 
 document.getElementById('menu-settings').addEventListener('click', function() {
     kebabMenuDropdown.style.display = 'none';
+    settingsContainer.style.display = "flex";
+});
+
+document.getElementById('close-settings').addEventListener('click', function() {
+    settingsContainer.style.display = "none";
 });
 
 document.getElementById('menu-attach').addEventListener('click', function() {

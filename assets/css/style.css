@@ -116,7 +116,7 @@ body.dark-mode #title-description {
 .header-buttons-container {
     display: flex;
     gap: 12px;
-    margin-right: 24px;
+    margin-right: 10px;
 }
 
 .header-icon-button {
@@ -290,6 +290,10 @@ body.dark-mode #title-description {
     .header-icon-button span{
         display: none;
     }
+    .settings-box{
+        width: 250px !important;
+        height: 350px;
+    }
 }
 
 .kebab-menu-dropdown {
@@ -342,3 +346,35 @@ body.dark-mode #title-description {
     0%, 80%, 100% { opacity: 0.5; }
     40% { opacity: 1; }
 }
+
+#settings-container {
+    display: flex;
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-box{
+    background-color: #fff;
+    /* margin: 8% auto;  */
+    padding: 20px;
+    border-radius: 8px;
+    width: calc(20vw / 2 + 280px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.close {
+    color: #737373;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close:hover { color: #000; }
