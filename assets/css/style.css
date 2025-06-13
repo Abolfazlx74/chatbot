@@ -97,9 +97,10 @@ body.dark-mode .kebab-menu-item:hover {
 .chatbot-title{
     display: flex;
     flex-direction: column;
-    font-size: calc(1.6vw / 2 + 10px);
+    font-size: calc(1.6vw / 2 + 8px);
+    font-weight: 600;
     width: 30%;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin-left: 2%;
 }
 
@@ -361,20 +362,55 @@ body.dark-mode #title-description {
     align-items: center;
 }
 
-.settings-box{
+.settings-box {
     background-color: #fff;
-    /* margin: 8% auto;  */
+    border: solid 2px gray;
     padding: 20px;
     border-radius: 8px;
-    width: calc(20vw / 2 + 280px);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    width: calc(20vw / 2 + 360px);
+    height: 300px;
+    box-shadow: 0 2px 18px rgba(0,0,0,0.2);
+}
+
+.settings-box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+}
+.tab {
+    border: none;
+    font-size: calc(1vw / 10 + 12px);
+    padding: 0 10px;
+    opacity: 0.6;
+    border-right: 5px solid #000;
+    background: linear-gradient(to right, rgba(114, 114, 114, 0.132), white);
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    height: 30px;
+    white-space: nowrap;
+    min-width: calc(2vw + 90px);
+}
+
+.tab.active {
+    opacity: 1;
 }
 
 .close {
-    color: #737373;
-    float: right;
+    color: #000;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
 }
-.close:hover { color: #000; }
+
+.op-element{
+    font-size: 15px;
+    margin-left: 5px;
+    margin-top: 10px;
+    font-family: Inter,-apple-system,system-ui,BlinkMacSystemFont,Helvetica Neue,Helvetica,sans-serif;
+}

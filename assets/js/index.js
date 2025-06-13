@@ -7,6 +7,10 @@ const clearButton = document.getElementById('clear-button');
 const kebabMenuButton = document.getElementById('kebab-menu-button');
 const kebabMenuDropdown = document.getElementById('kebab-menu-dropdown');
 const settingsContainer = document.getElementById('settings-container');
+const tabsContainer = document.querySelector(".tabs") 
+const tabs = document.querySelectorAll(".tab")
+
+let autoScroll = true;
 
 const isDarkMode = localStorage.getItem('darkMode') === 'true';
 if (isDarkMode) {
@@ -49,7 +53,9 @@ function addUserMessage(message) {
     container.appendChild(messageElement);
     chatMessages.appendChild(container);
 
-    scrollToBottom();
+    if(autoScroll){
+        scrollToBottom();
+    }
 }
 
 function addBotMessage(message) {
@@ -78,10 +84,14 @@ function typeMessage(element, text, speed = 5) {
         if (i < words.length) {
             element.textContent += (i === 0 ? '' : ' ') + words[i];
             i++;
-            scrollToBottom();
+            if(autoScroll){
+                scrollToBottom();
+            }
         } else {
             clearInterval(interval);
-            scrollToBottom();
+            if(autoScroll){
+                scrollToBottom();
+            }
         }
     }, speed);
 }
@@ -109,7 +119,9 @@ function showTypingIndicator() {
     container.appendChild(typing);
     chatMessages.appendChild(container);
 
-    scrollToBottom();
+    if(autoScroll){
+        scrollToBottom();
+    }
 }
 
 function removeTypingIndicator() {
@@ -153,6 +165,15 @@ function sendMessage(message) {
         setInputEnabled(true);
         isWaitingForResponse = false;
     });
+}
+
+function classListRemover(elements, className) {
+    elements.forEach(e => e.classList.remove(className));
+}
+
+function elementRemover(className){
+    const elements = document.querySelectorAll(`.${className}`);
+    elements.forEach(el => el.remove());
 }
 
 userInput.addEventListener('keypress', function(event) {
@@ -203,4 +224,76 @@ document.getElementById('menu-attach').addEventListener('click', function() {
 
 document.getElementById('menu-new-chat').addEventListener('click', function() {
     kebabMenuDropdown.style.display = 'none';
+});
+
+function setAutoScroll(){
+    autoScroll = !autoScroll;
+}
+
+function enableMemory(){
+    console.log("memory enabled")
+}
+
+function checkBoxCreate(tabName){
+    const content = settingsElements[tabName];
+    elementRemover("op-element");
+    Object.values(content).forEach(el=>{
+        const label = document.createElement("label");
+        label.classList.add("op-element");
+        label.innerText = `${el.text}`;
+        const checkbox = document.createElement("input");
+        checkbox.style.marginLeft = "5px";
+        checkbox.type = "checkbox";
+        checkbox.checked = true;
+        checkbox.addEventListener("change", () => {
+              el.func();
+        });
+        label.style.display = "flex";
+        label.appendChild(checkbox);
+        document.querySelector(".settings-box").appendChild(label);
+    })
+}
+
+const settingsElements = { 
+    "General Settings": { 
+      element_1: {
+        text: "Auto Scroll",
+        func: setAutoScroll
+      },
+      element_2: {
+        text: "Enable memory",
+        func: enableMemory
+      }
+    },
+  
+    "Customizations": {
+      element_1: {
+        text: "",
+        type: "",
+        func: ""
+      }
+    },
+  
+    "About us": {
+      element_1: {
+        text: "",
+        type: ""
+      }
+    }
+};
+checkBoxCreate("General Settings")
+
+function switchTab(tab){
+    tab.classList.add("active");
+    const tabName = tab.innerText;
+    if (tabName=="General Settings"){
+        checkBoxCreate(tabName);
+    }
+};
+
+tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+        classListRemover(tabs,"active");
+        switchTab(tab)
+    });
 });
