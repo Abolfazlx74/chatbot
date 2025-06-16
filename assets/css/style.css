@@ -72,11 +72,15 @@ body.dark-mode {
     color: #eaeaea;
 }
 
-.dark-mode .tab {
+.dark-mode .tab, #tabName {
     background: linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
     color: rgba(255, 255, 255, 0.9);
     border-color: rgba(255, 255, 255, 0.721);
     transition: background 0.3s, color 0.3s;
+}
+
+.dark-mode .tab-switcher {
+    color: white;
 }
 
 .dark-mode #close-settings {
@@ -288,42 +292,6 @@ body.dark-mode #title-description {
     height: 24px;
 }
 
-@media (max-width: 800px) {
-    .chatbot-title{
-        font-size: 1rem;
-    }
-    #title-description{
-        font-size: 0.8rem;
-    }
-    .chat-part{
-        font-size: 1.2rem;
-        left: 5%;
-        width: 90%;
-    }
-    .chatbot-footer{
-        width: 90%;
-    }
-    .footer-icon-button svg{
-        width: 20px;
-        height: 20px;
-    }
-}
-@media (max-width: 600px) {
-    .chat-part{
-        font-size: 1rem;
-    }
-    .header-icon-button img{
-        margin-right: 0px;
-    }
-    .header-icon-button span{
-        display: none;
-    }
-    .settings-box{
-        width: 250px !important;
-        height: 350px;
-    }
-}
-
 .kebab-menu-dropdown {
   position: absolute;
   bottom: 40px;
@@ -418,7 +386,7 @@ body.dark-mode #title-description {
     display: flex;
     gap: 10px;
 }
-.tab {
+.tab ,#tab-name {
     border: none;
     font-size: calc(1vw / 10 + 12px);
     padding: 0 10px;
@@ -433,8 +401,21 @@ body.dark-mode #title-description {
     min-width: calc(2vw + 90px);
 }
 
+#tab-name{
+    display: none;
+    opacity: 1;
+}
+
 .tab.active {
     opacity: 1;
+}
+
+.tab-switcher {
+    background: none;
+    border: none;
+    color: black;
+    font-size: 20px;
+    display: none; 
 }
 
 .close {
@@ -503,4 +484,88 @@ body.dark-mode #title-description {
     color: white;
     transform: rotateY(180deg);
     font-size: 15px;
+}
+
+@media (max-width: 800px) {
+    .chatbot-title {
+        font-size: 1rem;
+    }
+    #title-description {
+        font-size: 0.8rem;
+    }
+    .chat-part {
+        font-size: 1.2rem;
+        left: 5%;
+        width: 90%;
+    }
+    .chatbot-footer {
+        width: 90%;
+    }
+    .footer-icon-button svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .chat-part{
+        font-size: 1rem;
+    }
+    .header-icon-button img {
+        margin-right: 0px;
+    }
+    .header-icon-button span {
+        display: none;
+    }
+    .settings-box {
+        position: relative;
+        width: 250px !important;
+        height: 350px;
+    }
+    .settings-box-header {
+        justify-content: center;
+        position: relative;
+    }
+    #close-settings {
+        position: absolute;
+        right: -2%;
+        top: 20%;
+        font-size: 20px;
+    }
+    #random-text {
+        font-size: calc(1.5vw / 2 + 9px);
+    }
+    .flip-cards-container{
+        position: absolute;
+        width: 72%; 
+        bottom: 4%;
+        justify-content: center;
+        gap: 15px;
+    }
+    .flip-card{
+        width: 45px;
+        height: 45px;
+    }
+    .flip-card-back{
+        font-size: calc(1.9vw + 2px);
+    }
+    .tab-switcher {
+        display: block;
+    }
+    .tab{
+        display: none;
+    }
+    #tab-name {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none;
+        border: none;
+        background: rgba(128, 128, 128, 0.043) !important;
+        border: 2px solid rgba(0, 0, 0, 0.038);
+    }
+    .dark-mode #tab-name {
+        background: rgba(185, 183, 183, 0.043) !important;
+        border-color: rgba(102, 99, 99, 0.164);
+    }
 }

@@ -282,7 +282,10 @@ function flipCardCreate(tabName){
         flipCard.appendChild(flipCardInner);
         container.appendChild(flipCard);
     })
-    settingsBoxBody.innerText = "Lorem ipsum dolorLorem ipsum dolor Lorem m dolorLorem ipsum dolor Loremm dolorLorem ipsum dolor Loremm dolorLorem ipsum dolor Lorem ipsum dolor sit amet, consectetur adipisicing elit ipsum dolor  ipsum possimus explicabo consectetur autem mollitia consequatur corrupti repellendus laborum vero, doloribus esse? Quod corrupti repellendus laborum vero, doloribus esse? Quodcorrupti repellendus laborum vero, doloribus esse? Quod?"
+    const randomText = document.createElement("span");
+    randomText.id = ("random-text");
+    randomText.innerText = "Lorem ipsum dolorLorem ipsum dolor Lorem m dolorLorem ipsum dolor Loremm dolorLorem ipsum dolor Loremm dolorLorem ipsum dolor Lorem ipsum dolor sit amet, consectetur adipisicing elit ipsum dolor  ipsum possimus explicabo consectetur autem mollitia consequatur corrupti repellendus laborum vero, doloribus esse? Quod corrupti repellendus laborum vero, doloribus esse? Quodcorrupti repellendus laborum vero, doloribus esse? Quod?";
+    settingsBoxBody.appendChild(randomText);
     settingsBoxBody.appendChild(container);
 }
 
@@ -326,10 +329,7 @@ const settingsElements = {
 };
 checkBoxCreate("General Settings")
 
-function switchTab(tab){
-    tab.classList.add("active");
-    clearSettingsBox();
-    const tabName = tab.innerText;
+function handleTabContent(tabName){
     if (tabName=="General Settings"){
         checkBoxCreate(tabName);
     }
@@ -339,11 +339,42 @@ function switchTab(tab){
     else{
         flipCardCreate("About us");
     }
+}
+function switchTab(tab){
+    tab.classList.add("active");
+    clearSettingsBox();
+    const tabName = tab.innerText;
+    handleTabContent(tabName)
 };
 
+const currentTabName = document.getElementById("tab-name");
 tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
+    tab.addEventListener("click", (el) => {
         classListRemover(tabs,"active");
-        switchTab(tab)
+        switchTab(tab);
+        currentTabName.innerText = tab.innerText;
     });
 });
+
+const tabsNames = ['General Settings','Customizations','About us'] 
+document.getElementById("tab-arrow-left").addEventListener('click',()=>{
+    index = tabsNames.indexOf(currentTabName.innerText);
+    let newTabName = null;
+    if (index > 0) {newTabName = tabsNames[index - 1];}
+    else{newTabName = tabsNames[2];}
+        clearSettingsBox();
+        handleTabContent(newTabName);
+        currentTabName.innerText = newTabName;
+    
+})
+
+ 
+document.getElementById("tab-arrow-right").addEventListener('click',()=>{
+    index = tabsNames.indexOf(currentTabName.innerText);
+    let newTabName = null;
+    if (index < 2) {newTabName = tabsNames[index + 1];}
+    else{newTabName = tabsNames[0];}
+        clearSettingsBox();
+        handleTabContent(newTabName);
+        currentTabName.innerText = newTabName;
+})
