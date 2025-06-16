@@ -7,8 +7,10 @@ const clearButton = document.getElementById('clear-button');
 const kebabMenuButton = document.getElementById('kebab-menu-button');
 const kebabMenuDropdown = document.getElementById('kebab-menu-dropdown');
 const settingsContainer = document.getElementById('settings-container');
-const tabsContainer = document.querySelector(".tabs") 
-const tabs = document.querySelectorAll(".tab")
+const tabsContainer = document.querySelector(".tabs"); 
+const tabs = document.querySelectorAll(".tab");
+const settingsBoxBody = document.querySelector(".settings-box-body");
+const userFileInput = document.getElementById("user-file-input");
 
 let autoScroll = true;
 
@@ -171,9 +173,8 @@ function classListRemover(elements, className) {
     elements.forEach(e => e.classList.remove(className));
 }
 
-function elementRemover(className){
-    const elements = document.querySelectorAll(`.${className}`);
-    elements.forEach(el => el.remove());
+function clearSettingsBox(){
+    settingsBoxBody.innerHTML="";
 }
 
 userInput.addEventListener('keypress', function(event) {
@@ -220,6 +221,7 @@ document.getElementById('close-settings').addEventListener('click', function() {
 
 document.getElementById('menu-attach').addEventListener('click', function() {
     kebabMenuDropdown.style.display = 'none';
+    userFileInput.click();
 });
 
 document.getElementById('menu-new-chat').addEventListener('click', function() {
@@ -231,12 +233,11 @@ function setAutoScroll(){
 }
 
 function enableMemory(){
-    console.log("memory enabled")
+    console.log("memory enabled/desabled")
 }
 
 function checkBoxCreate(tabName){
     const content = settingsElements[tabName];
-    elementRemover("op-element");
     Object.values(content).forEach(el=>{
         const label = document.createElement("label");
         label.classList.add("op-element");
@@ -250,8 +251,39 @@ function checkBoxCreate(tabName){
         });
         label.style.display = "flex";
         label.appendChild(checkbox);
-        document.querySelector(".settings-box").appendChild(label);
+        settingsBoxBody.appendChild(label);
     })
+}
+
+function flipCardCreate(tabName){
+    const xmlns = "http://www.w3.org/2000/svg";
+    const content = settingsElements[tabName]
+    const container = document.createElement("div");
+    container.classList.add("flip-cards-container");
+    Object.values(content).forEach(el=>{
+        const flipCard = document.createElement("a");
+        flipCard.href = el.url;
+        flipCard.classList.add("flip-card");
+        const flipCardInner = document.createElement("div");
+        flipCardInner.classList.add("flip-card-inner");
+        const flipCardFront = document.createElement("div");
+        flipCardFront.classList.add("flip-card-front");
+        const backImage = document.createElementNS(xmlns, "svg");
+        backImage.setAttribute("viewBox", "0 0 16 16");
+        const svgPath = document.createElementNS(xmlns, "path");
+        svgPath.setAttribute("d", el.d);
+        const flipCardBack = document.createElement("div");
+        flipCardBack.classList.add("flip-card-back");
+        flipCardBack.innerText = el.text;
+        backImage.appendChild(svgPath);
+        flipCardFront.appendChild(backImage);
+        flipCardInner.appendChild(flipCardFront);
+        flipCardInner.appendChild(flipCardBack);
+        flipCard.appendChild(flipCardInner);
+        container.appendChild(flipCard);
+    })
+    settingsBoxBody.innerText = "Lorem ipsum dolorLorem ipsum dolor Lorem m dolorLorem ipsum dolor Loremm dolorLorem ipsum dolor Loremm dolorLorem ipsum dolor Lorem ipsum dolor sit amet, consectetur adipisicing elit ipsum dolor  ipsum possimus explicabo consectetur autem mollitia consequatur corrupti repellendus laborum vero, doloribus esse? Quod corrupti repellendus laborum vero, doloribus esse? Quodcorrupti repellendus laborum vero, doloribus esse? Quod?"
+    settingsBoxBody.appendChild(container);
 }
 
 const settingsElements = { 
@@ -275,19 +307,37 @@ const settingsElements = {
     },
   
     "About us": {
-      element_1: {
-        text: "",
-        type: ""
-      }
+        element_1: {
+            text: "GitHub",
+            d:"M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z",
+            url:"https://github.com/abolfazlx74",
+          },
+          element_2: {
+            text: "Telegram",
+            d:"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09",
+            url:"https://t.me/abolfazlx74",
+          },
+          element_3: {
+            text: "LinkedIn",
+            d:"M0 1.146C0 .513.526 0 1.175 0h13.65C15.473 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.527 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.341-1.248-.822 0-1.358.54-1.358 1.248 0 .694.52 1.248 1.327 1.248h.014zm4.908 8.212V9.359c0-.215.016-.43.08-.584.175-.43.574-.875 1.243-.875.876 0 1.226.66 1.226 1.63v3.864h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.015a5.54 5.54 0 0 1 .015-.025V6.169h-2.4c.03.7 0 7.225 0 7.225h2.4z",
+            url:"https://www.linkedin.com/in/abolfazl-bahrami-604b16345",
+          }
     }
 };
 checkBoxCreate("General Settings")
 
 function switchTab(tab){
     tab.classList.add("active");
+    clearSettingsBox();
     const tabName = tab.innerText;
     if (tabName=="General Settings"){
         checkBoxCreate(tabName);
+    }
+    else if(tabName=="Customizations"){
+        console.log("customization tab has opened")
+    }
+    else{
+        flipCardCreate("About us");
     }
 };
 

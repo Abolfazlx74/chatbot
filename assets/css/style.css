@@ -56,9 +56,36 @@ body.dark-mode {
     border-color: rgba(220, 220, 220, 0.605);
 }
 
-.dark-mode #chatbot-fixed-logo{
+.dark-mode #chatbot-fixed-logo {
     opacity: 10%;
     transition: opacity .1s;
+}
+
+.dark-mode #settings-container {
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+.dark-mode .settings-box {
+    background-color: #121212;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 24px rgba(22, 22, 22, 0.7);
+    color: #eaeaea;
+}
+
+.dark-mode .tab {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.721);
+    transition: background 0.3s, color 0.3s;
+}
+
+.dark-mode #close-settings {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.dark-mode .flip-card-back {
+    background-color: rgba(255, 255, 255, 0.767);
+    color: black;
 }
 
 body.dark-mode .kebab-menu-dropdown {
@@ -247,12 +274,12 @@ body.dark-mode #title-description {
     background: transparent;
     border: none;
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: 10px;
     padding: 8px;
     margin-left: 6px;
 }
 .footer-icon-button:hover, .footer-icon-button:focus {
-    background: rgba(60, 60, 60, 0.08);
+    background: rgba(60, 60, 60, 0.033);
     filter: brightness(0.95);
 }
 
@@ -348,6 +375,10 @@ body.dark-mode #title-description {
     40% { opacity: 1; }
 }
 
+#user-file-input{
+    display: none;
+}
+
 #settings-container {
     display: flex;
     position: fixed; 
@@ -376,6 +407,11 @@ body.dark-mode #title-description {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.settings-box-body{
+    height: 100%;
+    margin-top: 5%;
 }
 
 .tabs {
@@ -409,8 +445,62 @@ body.dark-mode #title-description {
 }
 
 .op-element{
-    font-size: 15px;
+    font-size: 14px;
     margin-left: 5px;
     margin-top: 10px;
     font-family: Inter,-apple-system,system-ui,BlinkMacSystemFont,Helvetica Neue,Helvetica,sans-serif;
+}
+
+.flip-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+    font-size: 15px;
+    margin-top: 2%;
+}
+
+
+.flip-card {
+    background-color: transparent;
+    width: 60px;
+    height: 60px;
+    perspective: 200px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+  
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+  
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+}
+  
+.flip-card-front {
+    color: black;
+}
+  
+.flip-card-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: white;
+    transform: rotateY(180deg);
+    font-size: 15px;
 }
