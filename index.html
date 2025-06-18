@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="header-buttons-container">
-        <button class="header-icon-button" id="clear-button">
+        <button class="header-icon-button" id="clear-button" onclick="clearMessages()">
           <svg class="header-icon-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="ic_cleaner">
               <path id="Union" fill-rule="evenodd" clip-rule="evenodd" d="M13.0003 2.80005C13.0003 2.247776 12.5526 1.80005 12.0003 1.80005C11.448 1.80005 11.0003 2.247776 11.0003 2.80005V5.80005H6.766C5.56296 5.80005 4.64093 6.85554 4.70954 8.05648C4.93958 12.0835 4.25602 14.8592 3.07695 18.0444C2.58534 19.3724 3.54262 20.8 4.95871 20.8H17.2939C18.8316 20.8 20.1258 19.6376 20.2826 18.1108C20.6649 14.3794 20.837 11.6154 20.0558 7.98339C19.7752 6.67891 18.5826 5.80005 17.2482 5.80005H13.0003V2.80005ZM6.766 7.80005H17.2482C17.731 7.80005 18.0366 8.107 18.1005 8.40392C18.2038 8.88424 18.2891 9.34761 18.3584 9.80005H6.75271C6.75811 9.20614 6.7432 8.58867 6.70629 7.94242C6.70323 7.88891 6.72236 7.84473 6.766 7.80005ZM6.6527 11.8H18.5688C18.678 13.7006 18.5328 15.5659 18.293 17.904C18.2414 18.408 17.8114 18.8 17.2939 18.8H16.0002V18C16.0002 17.4477 15.5525 17 15.0002 17C14.4479 17 14.0002 17.4477 14.0002 18V18.8H4.95943L4.95732 18.7971C4.9512 18.7673 4.94789 18.7368 4.9469 18.7061C5.7974 16.4564 6.41929 14.3132 6.6527 11.8Z" fill="currentColor"/>
@@ -70,7 +70,7 @@
             Attach Files
           </div>
           <input type="file" id="user-file-input"/>
-          <div class="kebab-menu-item" id="menu-new-chat">
+          <div class="kebab-menu-item" id="menu-new-chat" onclick="clearMessages()">
             <svg viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
               <rect x="11" y="5" width="2" height="14" rx="1"/>
               <rect x="5" y="11" width="14" height="2" rx="1"/>
@@ -96,7 +96,6 @@
           <span class="close" id="close-settings">&times;</span>
         </div>
         <div class="settings-box-body">
-
         </div>
       </div>
     </div>

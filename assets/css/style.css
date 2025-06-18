@@ -20,11 +20,11 @@ body.dark-mode {
 }
 
 .dark-mode .user-message {
-    background-color: #49484a;
+    background-color: #3d3c3d;
 }
 
 .dark-mode .bot-message {
-    background-color: #2f2d2d;
+    background-color: #2b2929;
     color: #ffffff;
 }
 
@@ -359,6 +359,7 @@ body.dark-mode #title-description {
     background-color: rgba(0,0,0,0.4);
     justify-content: center;
     align-items: center;
+    /* display: none; */
 }
 
 .settings-box {
@@ -430,6 +431,15 @@ body.dark-mode #title-description {
     margin-left: 5px;
     margin-top: 10px;
     font-family: Inter,-apple-system,system-ui,BlinkMacSystemFont,Helvetica Neue,Helvetica,sans-serif;
+}
+
+.avatar-container{
+    display: flex;
+    align-items: center;
+    padding: 5px;    
+}   
+.avatar-container input {
+    margin-left: 10px;
 }
 
 .flip-cards-container {
@@ -524,14 +534,15 @@ body.dark-mode #title-description {
     }
     .settings-box-header {
         justify-content: center;
+        /* align-items: center; */
         position: relative;
     }
     #close-settings {
-        position: absolute;
-        right: -2%;
-        top: 20%;
+        position: absolute; 
+        right: -10px;
+        top: -15px;
         font-size: 20px;
-    }
+    }    
     #random-text {
         font-size: calc(1.5vw / 2 + 9px);
     }
@@ -551,6 +562,9 @@ body.dark-mode #title-description {
     }
     .tab-switcher {
         display: block;
+    }
+    .tab-switcher:hover {
+        cursor: pointer;
     }
     .tab{
         display: none;

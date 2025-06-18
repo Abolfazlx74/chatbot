@@ -13,30 +13,34 @@ const settingsBoxBody = document.querySelector(".settings-box-body");
 const userFileInput = document.getElementById("user-file-input");
 
 let autoScroll = true;
+let imagesPaths = { 
+    user: ['assets/images/user-dark.svg','assets/images/user.svg'], 
+    bot: ['assets/images/bot-dark.svg','assets/images/bot.svg']
+}
 
 const isDarkMode = localStorage.getItem('darkMode') === 'true';
 if (isDarkMode) {
     document.body.classList.add('dark-mode');
 }
 
-function setProfileImagesForMode(isDark) {
+function setProfileImages(isDark, imagesPaths) {
     const userProfiles = document.querySelectorAll('.user-profile');
     const botProfiles = document.querySelectorAll('.bot-profile');
     userProfiles.forEach(img => {
-        img.src = isDark ? 'assets/images/user-dark.svg' : 'assets/images/user.svg';
+        img.src = isDark ? imagesPaths.user[0] : imagesPaths.user[1];
     });
     botProfiles.forEach(img => {
-        img.src = isDark ? 'assets/images/bot-dark.svg' : 'assets/images/bot.svg';
+        img.src = isDark ? imagesPaths.bot[0] : imagesPaths.bot[1];
     });
 }
 
-setProfileImagesForMode(isDarkMode);
+setProfileImages(isDarkMode, imagesPaths);
 
 darkModeButton.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     const isDarkMode = document.body.classList.contains('dark-mode');
     localStorage.setItem('darkMode', isDarkMode);
-    setProfileImagesForMode(isDarkMode);
+    setProfileImages(isDarkMode,im);
 });
 
 function addUserMessage(message) {
@@ -70,32 +74,15 @@ function addBotMessage(message) {
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('bot-message');
+    messageElement.textContent = message;
 
     container.appendChild(profile);
     container.appendChild(messageElement);
     chatMessages.appendChild(container);
 
-    typeMessage(messageElement, message, 5);
-}
-
-function typeMessage(element, text, speed = 5) {
-    const words = text.split(' ');
-    let i = 0;
-    element.textContent = '';
-    const interval = setInterval(() => {
-        if (i < words.length) {
-            element.textContent += (i === 0 ? '' : ' ') + words[i];
-            i++;
-            if(autoScroll){
-                scrollToBottom();
-            }
-        } else {
-            clearInterval(interval);
-            if(autoScroll){
-                scrollToBottom();
-            }
-        }
-    }, speed);
+    if(autoScroll){
+        scrollToBottom();
+    }
 }
 
 function scrollToBottom() {
@@ -191,9 +178,9 @@ sendButton.addEventListener('click', function() {
     }
 });
 
-clearButton.addEventListener('click', function() {
+function clearMessages(){
     chatMessages.innerHTML = '';
-});
+}
 
 kebabMenuButton.addEventListener('click', function(event) {
     event.stopPropagation();
@@ -334,7 +321,8 @@ function handleTabContent(tabName){
         checkBoxCreate(tabName);
     }
     else if(tabName=="Customizations"){
-        console.log("customization tab has opened")
+        avatarCreate("user");
+        avatarCreate("bot");
     }
     else{
         flipCardCreate("About us");
@@ -368,7 +356,6 @@ document.getElementById("tab-arrow-left").addEventListener('click',()=>{
     
 })
 
- 
 document.getElementById("tab-arrow-right").addEventListener('click',()=>{
     index = tabsNames.indexOf(currentTabName.innerText);
     let newTabName = null;
@@ -378,3 +365,40 @@ document.getElementById("tab-arrow-right").addEventListener('click',()=>{
         handleTabContent(newTabName);
         currentTabName.innerText = newTabName;
 })
+
+function avatarCreate(role) {
+    const avatarContainer = document.createElement("div");
+    avatarContainer.classList.add("avatar-container");
+    const label = document.createElement("label");
+    label.htmlFor = `${role}-avatar-input`;
+    label.innerText = `${role} avatar:`;
+    const input = document.createElement("input");
+    input.type = "file";
+    input.name = `${role}-avatar`;
+    input.id = `${role}-avatar-input`;
+    input.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const formData = new FormData();
+        formData.append('avatar', file);
+        fetch('http://localhost:3001/api/upload-avatar', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            const img = document.querySelector(`.${role}-profile`);
+            if (img) {
+                img.src = data.filePath;
+            }
+            imagesPaths[role] = [data.filePath,data.filePath];
+            setProfileImages(isDarkMode, imagesPaths);
+        })
+        .catch(err => {
+            console.error('Error uploading avatar:', err);
+        });
+    });
+    avatarContainer.appendChild(label);
+    avatarContainer.appendChild(input);
+    settingsBoxBody.appendChild(avatarContainer);
+}

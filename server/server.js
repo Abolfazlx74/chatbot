@@ -3,6 +3,7 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 const path = require('path');
+const multer = require('multer');
 
 const app = express();
 app.use(cors());
@@ -18,14 +19,15 @@ app.post('/api/chat', async (req, res) => {
     const response = await axios.post(
       'https://openrouter.ai/api/v1/chat/completions',
       {
-        model: "openai/gpt-3.5-turbo", // or your preferred model
+        model: "openai/gpt-3.5-turbo",
         messages: [{ role: "user", content: message }]
       },
       {
         headers: {
           'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
           'Content-Type': 'application/json'
-        }
+        },
+        timeout: 10000
       }
     );
     const botReply = response.data.choices[0].message.content;
@@ -38,6 +40,21 @@ app.post('/api/chat', async (req, res) => {
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
+});
+
+const uploadPath = path.join(__dirname, '../assets/images/uploads');
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, uploadPath),
+  filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
+})
+const upload = multer({ storage });
+
+app.post('/api/upload-avatar', upload.single('avatar'), (req, res) => {
+  const file = req.file;
+  if (!file) {
+    return res.status(400).json({ error: 'No file uploaded' });
+  }
+  res.json({ filePath : `/assets/images/uploads/${req.file.filename}` });
 });
 
 const PORT = process.env.PORT || 3001;
