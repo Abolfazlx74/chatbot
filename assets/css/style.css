@@ -359,7 +359,7 @@ body.dark-mode #title-description {
     background-color: rgba(0,0,0,0.4);
     justify-content: center;
     align-items: center;
-    /* display: none; */
+    display: none;
 }
 
 .settings-box {

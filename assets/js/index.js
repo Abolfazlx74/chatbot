@@ -11,6 +11,7 @@ const tabsContainer = document.querySelector(".tabs");
 const tabs = document.querySelectorAll(".tab");
 const settingsBoxBody = document.querySelector(".settings-box-body");
 const userFileInput = document.getElementById("user-file-input");
+const fixedLogo = document.querySelector(".chatbot-fixed-logo-container");
 
 let autoScroll = true;
 let imagesPaths = { 
@@ -285,6 +286,16 @@ const settingsElements = {
       element_2: {
         text: "Enable memory",
         func: enableMemory
+      },
+      element_3: {
+        text : "Central bot image visibility",
+        func: ()=>{
+            if (window.getComputedStyle(fixedLogo).display == "flex") {
+                fixedLogo.style.display = "none";
+            }else {
+                fixedLogo.style.display = "flex";
+            } 
+        }
       }
     },
   
