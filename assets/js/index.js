@@ -40,7 +40,7 @@ darkModeButton.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     const isDarkMode = document.body.classList.contains('dark-mode');
     localStorage.setItem('darkMode', isDarkMode);
-    setProfileImages(isDarkMode,im);
+    setProfileImages(isDarkMode,imagesPaths);
 });
 
 function addUserMessage(message) {
@@ -49,7 +49,7 @@ function addUserMessage(message) {
 
     const profile = document.createElement('img');
     profile.classList.add("user-profile");
-    profile.src = document.body.classList.contains('dark-mode') ? "assets/images/user-dark.svg" : "assets/images/user.svg";
+    profile.src = document.body.classList.contains('dark-mode') ? imagesPaths.user[0] : imagesPaths.user[1];
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('user-message');
@@ -70,7 +70,7 @@ function addBotMessage(message) {
 
     const profile = document.createElement('img');
     profile.classList.add("bot-profile");
-    profile.src = document.body.classList.contains('dark-mode') ? "assets/images/bot-dark.svg" : "assets/images/bot.svg";
+    profile.src = document.body.classList.contains('dark-mode') ? imagesPaths.bot[0] : imagesPaths.bot[1];
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('bot-message');
@@ -98,7 +98,7 @@ function showTypingIndicator() {
 
     const profile = document.createElement('img');
     profile.classList.add("bot-profile");
-    profile.src = document.body.classList.contains('dark-mode') ? "assets/images/bot-dark.svg" : "assets/images/bot.svg";
+    profile.src = document.body.classList.contains('dark-mode') ? imagesPaths.bot[0] : imagesPaths.bot[1];
 
     const typing = document.createElement('div');
     typing.classList.add('typing-indicator');
@@ -392,7 +392,7 @@ function avatarCreate(role) {
                 img.src = data.filePath;
             }
             imagesPaths[role] = [data.filePath,data.filePath];
-            setProfileImages(isDarkMode, imagesPaths);
+            console.log(imagesPaths)
         })
         .catch(err => {
             console.error('Error uploading avatar:', err);

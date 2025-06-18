@@ -1,2 +1,4 @@
 server/node_modules/
 server/.env
+assets/images/upload/*
+!assets/images/upload/.gitkeep
