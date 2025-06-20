@@ -387,6 +387,10 @@ function avatarCreate(role) {
     input.type = "file";
     input.name = `${role}-avatar`;
     input.id = `${role}-avatar-input`;
+    const label2 = document.createElement("label");
+    label2.htmlFor = `${role}-avatar-input`;
+    label2.innerText = "Choose a file";
+    label2.classList.add("file-input");
     input.addEventListener("change", (e) => {
         const file = e.target.files[0];
         if (!file) return;
@@ -411,5 +415,6 @@ function avatarCreate(role) {
     });
     avatarContainer.appendChild(label);
     avatarContainer.appendChild(input);
+    avatarContainer.appendChild(label2);
     settingsBoxBody.appendChild(avatarContainer);
 }

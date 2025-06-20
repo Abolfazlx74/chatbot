@@ -6,7 +6,7 @@ body {
 }
 
 body.dark-mode {
-    background-color: #1a1a1a;
+    background-color: #121212;
     color: #ffffff;
 }
 
@@ -90,6 +90,11 @@ body.dark-mode {
 .dark-mode .flip-card-back {
     background-color: rgba(255, 255, 255, 0.767);
     color: black;
+}
+
+.dark-mode .file-input {
+    background-color: #121212;
+    border-color: #eaeaea;
 }
 
 body.dark-mode .kebab-menu-dropdown {
@@ -190,8 +195,8 @@ body.dark-mode #title-description {
     pointer-events: none;
 }
 #chatbot-fixed-logo{
-    width: 75vw;
-    height: 65vh;
+    width: 50vw;
+    height: 50vh;
     filter: blur(3px);
     opacity: 70%;
 }
@@ -370,6 +375,7 @@ body.dark-mode #title-description {
     width: calc(20vw / 2 + 360px);
     height: 300px;
     box-shadow: 0 2px 18px rgba(0,0,0,0.2);
+    overflow: hidden;
 }
 
 .settings-box-header {
@@ -437,9 +443,20 @@ body.dark-mode #title-description {
     display: flex;
     align-items: center;
     padding: 5px;    
+    white-space: nowrap;
 }   
 .avatar-container input {
     margin-left: 10px;
+}
+
+.file-input {
+    display: none;
+    margin-left: 10px;
+    font-size: 13px;
+    padding: 5px;
+    border: solid #000 1px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .flip-cards-container {
@@ -581,5 +598,14 @@ body.dark-mode #title-description {
     .dark-mode #tab-name {
         background: rgba(185, 183, 183, 0.043) !important;
         border-color: rgba(102, 99, 99, 0.164);
+    }
+    #chatbot-fixed-logo {
+        margin-bottom: 10%;
+    }
+    .avatar-container input {
+        display: none;
+    }
+    .file-input {
+        display: block;
     }
 }
